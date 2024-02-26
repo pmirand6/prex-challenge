@@ -8,9 +8,8 @@ services:
     working_dir: /var/www/html
     environment:
       DB_HOST: db
-      DB_PORT: 3317
       DB_DATABASE: prex-challenge
-      DB_USERNAME: prex-challenge
+      DB_USERNAME: root
       DB_PASSWORD: secret
       PHP_IDE_CONFIG: "serverName=prex-challenge"
     volumes:
