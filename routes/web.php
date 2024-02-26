@@ -14,5 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $message = "<h1>Prex Challenge</h1>";
+    $message .= "<p>Github Repository <a href='https://github.com/pmirand6/prex-challenge'>Here</a> </p>";
+    return $message;
 });
