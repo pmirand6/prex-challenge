@@ -16,9 +16,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 FROM build as web
 
-# # definición de los argumentos
-ARG USERID
-ARG USERNAME
+# Giphy API Key
+ENV GIPHY_API_KEY=giving_by_docker_image
 
 RUN useradd -rm -d /home/1000 -s /bin/bash -g root -G sudo -u 1000 1000
 USER 1000

@@ -1,9 +1,8 @@
 version: '3.8'
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: pmirand6/php82-apache-composer
+    container_name: prex-challenge-app
     ports:
       - "${APP_PORT:-8498}:80"
     working_dir: /var/www/html
@@ -23,6 +22,7 @@ services:
 
   db:
     image: mysql:5.7
+    container_name: prex-challenge-db
     environment:
       MYSQL_DATABASE: prex-challenge
       MYSQL_USER: prex-challenge
