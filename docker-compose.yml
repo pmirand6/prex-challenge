@@ -3,6 +3,8 @@ services:
   app:
     image: pmirand6/php82-apache-composer
     container_name: prex-challenge-app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     ports:
       - "${APP_PORT:-8498}:80"
     working_dir: /var/www/html
@@ -11,7 +13,7 @@ services:
       DB_DATABASE: prex-challenge
       DB_USERNAME: root
       DB_PASSWORD: secret
-      PHP_IDE_CONFIG: "serverName=prex-challenge"
+      PHP_IDE_CONFIG: "serverName=localhost"
     volumes:
       - .:/var/www/html
       - ./docker/assets/apache/sites-enabled:/etc/apache2/sites-enabled
