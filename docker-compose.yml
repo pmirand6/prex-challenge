@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${APP_PORT:-8498}:80"
+    working_dir: /var/www/html
+    environment:
+      DB_HOST: db
+      DB_PORT: 3317
+      DB_DATABASE: prex-challenge
+      DB_USERNAME: prex-challenge
+      DB_PASSWORD: secret
+      PHP_IDE_CONFIG: "serverName=prex-challenge"
+    volumes:
+      - .:/var/www/html
+      - ./docker/assets/apache/sites-enabled:/etc/apache2/sites-enabled
+      - ./docker/assets/php/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: prex-challenge
+      MYSQL_USER: prex-challenge
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+    ports:
+      - "${APP_PORT:-3317}:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+
+volumes:
+  dbdata:
