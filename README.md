@@ -61,7 +61,11 @@ It is designed to demonstrate the ability to interact with external APIs, authen
 ### Usage
 
 After starting the Docker container, your API is accessible at `http://localhost:8498` (or whichever port you mapped to the container's port 80).
-
+#### The user credentials for the seeded user are as follows:
+````
+email = test@prex-challenge.com
+password = password
+````
 #### API Endpoints
 TODO: Add API documentation
 
