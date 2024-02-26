@@ -50,6 +50,14 @@ It is designed to demonstrate the ability to interact with external APIs, authen
    docker exec -it prex-challenge-app php artisan db:seed
    ```
 
+5. **Generate Passport Keys**
+
+   Run the following command to generate the keys required for OAuth2.0 authentication:
+
+   ```
+   docker exec -it prex-challenge-app php artisan passport:install
+   ```
+
 ### Usage
 
 After starting the Docker container, your API is accessible at `http://localhost:8498` (or whichever port you mapped to the container's port 80).
