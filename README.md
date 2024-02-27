@@ -2,15 +2,14 @@
 
 ## Description
 
-This project integrates with the GIPHY API to develop a custom REST API that exposes a set of services with OAuth2.0 authentication.
-It is designed to demonstrate the ability to interact with external APIs, authenticate users securely, and provide a simple, efficient interface for retrieving and manipulating data.
+This project demonstrates integration with the GIPHY API by developing a custom REST API that includes OAuth 2.0 authentication. It showcases the ability to securely interact with external APIs, authenticate users, and offer a streamlined interface for efficient data retrieval and manipulation.
 
 ## Requirements
 
 - Docker
 - Docker Compose
 - Git
-- Postman (for API testing)
+- Postman (recommended for API testing)
 
 ## Getting Started
 
@@ -18,60 +17,89 @@ It is designed to demonstrate the ability to interact with external APIs, authen
 
 1. **Clone the Repository**
 
-   First, clone this repository to your local machine using Git:
+   Begin by cloning this repository to your local machine using Git:
 
-   ```
-   git clone https://github.com/pmirand6/prex-challenge
+   ```bash
+   git clone https://github.com/pmirand6/prex-challenge.git
    cd prex-challenge
    ```
 
-2. **Create the containers**
+2. **Build and Start Docker Containers**
 
-    Run the following command to build and start the Docker containers:
+   Execute the following command to build and initiate the Docker containers:
 
+   ```bash
+   docker-compose up -d --build
    ```
-   docker compose up -d --build
-   ```
 
-3. **Install Dependencies**
+3. **Install Project Dependencies**
 
-   After the containers are running, you can install the project dependencies using Composer:
+   With the containers up and running, install the project dependencies using Composer:
 
-   ```
+   ```bash
    docker exec -it prex-challenge-app composer install
    ```
 
-4. **Run Migrations and Seeders**
+4. **Database Migrations and Seeding**
 
-   Run the following commands to create the database tables and seed the database with sample data:
+   Execute these commands to set up the database tables and populate them with sample data:
 
-   ```
+   ```bash
    docker exec -it prex-challenge-app php artisan migrate
    docker exec -it prex-challenge-app php artisan db:seed
    ```
 
-5. **Generate Passport Keys**
+5. **Generate OAuth 2.0 Keys**
 
-   Run the following command to generate the keys required for OAuth2.0 authentication:
+   Generate the necessary keys for OAuth 2.0 authentication with this command:
 
-   ```
+   ```bash
    docker exec -it prex-challenge-app php artisan passport:install
    ```
 
 ### Usage
 
-After starting the Docker container, your API is accessible at `http://localhost:8498` (or whichever port you mapped to the container's port 80).
-#### The user credentials for the seeded user are as follows:
-````
-email = test@prex-challenge.com
-password = password
-````
+Once the Docker container is operational, the API can be accessed at `http://localhost:8498` or through any other port you've configured to map to the container's port 80.
+
+#### Seeded User Credentials:
+
+```plaintext
+Email: test@prex-challenge.com
+Password: password
+```
+
 #### API Endpoints
-TODO: Add API documentation
+
+Documentation for API endpoints will be provided here.
 
 #### Testing
-TODO: Add testing instructions
+
+##### Application Tests:
+
+To ensure proper application testing, follow these steps:
+
+- **Prepare the Test Database:**
+
+  ```bash
+  docker exec -it prex-challenge-app touch database/database.sqlite
+  ```
+
+- **Optimize the Application:**
+
+  This step ensures the database location is correctly recognized during testing:
+
+  ```bash
+  docker exec -it prex-challenge-app php artisan optimize
+  ```
+
+- **Execute the Tests:**
+
+  Run the tests with the following command:
+
+  ```bash
+  docker exec -it prex-challenge-app php artisan test
+  ```
 
 ## Documentation
 
-TODO: Add API documentation
+Further API documentation and usage instructions will be added here.
