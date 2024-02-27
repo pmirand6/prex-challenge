@@ -120,3 +120,21 @@ To ensure proper application testing, follow these steps:
 
 #### User Gif Interaction
 ![User Gif Interaction](./images/use-cases/user-gif-interaction.png)
+
+### Sequence Diagrams
+
+#### User Authentication
+
+![User Login](./images/sequence-diagrams/user-login.png)
+
+#### User Search Gif by Keyword
+
+![User Search Gif by Keyword](./images/sequence-diagrams/search-gif-by-keyword.png)
+
+#### User Search Gif by ID
+
+![User Search Gif by ID](./images/sequence-diagrams/search-gif-by-id.png)
+
+#### User Save Favorite Gif
+
+![User Save Favorite Gif](./images/sequence-diagrams/store-favorite-gif.png)
