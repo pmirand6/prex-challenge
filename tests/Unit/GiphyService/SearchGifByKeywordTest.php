@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\GiphyService;
 
 use App\Dtos\Giphy\SearchGifRequestDto;
 use App\Dtos\Giphy\SearchGifResponseDto;
@@ -10,7 +10,7 @@ use Exception;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
-class GiphyServiceTest extends TestCase
+class SearchGifByKeywordTest extends TestCase
 {
     
     public function setUp(): void

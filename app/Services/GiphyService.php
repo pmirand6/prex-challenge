@@ -6,6 +6,7 @@
 
 namespace App\Services;
 
+use App\Dtos\Giphy\SearchByIdGifResponseDto;
 use App\Dtos\Giphy\SearchGifRequestDto;
 use App\Dtos\Giphy\SearchGifResponseDto;
 use App\Exceptions\GiphyServiceException;
@@ -40,5 +41,23 @@ class GiphyService
             throw new GiphyServiceException($e->getMessage());
         }
         
+    }
+    
+    /**
+     * @throws GiphyServiceException
+     */
+    public function getGifById(string $gifId): SearchByIdGifResponseDto
+    {
+        try {
+            $url = config('giphy.api.url') . $gifId;
+            $response = Http::get($url, [
+                'api_key' => config('giphy.api.key'),
+            ]);
+            
+            return SearchByIdGifResponseDto::from($response->json());
+        } catch (\Throwable $e) {
+            Log::error('Error getting gif by id', ['error' => $e->getMessage()]);
+            throw new GiphyServiceException($e->getMessage());
+        }
     }
 }
