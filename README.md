@@ -1,144 +1,131 @@
 # GIPHY API Integration Challenge
 
-## Description
+## Introduction
 
-This project demonstrates integration with the GIPHY API by developing a custom REST API that includes OAuth 2.0 authentication. It showcases the ability to securely interact with external APIs, authenticate users, and offer a streamlined interface for efficient data retrieval and manipulation.
+This project is designed to showcase the integration with the GIPHY API through the development of a custom REST API. It includes OAuth 2.0 authentication, demonstrating secure interactions with external APIs, user authentication, and efficient data retrieval and manipulation.
+
+## Table of Contents
+
+1. [Introduction](#introduction)
+2. [Requirements](#requirements)
+3. [Getting Started](#getting-started)
+    - [Installation](#installation)
+    - [Usage](#usage)
+    - [Testing](#testing)
+4. [Documentation](#documentation)
+    - [Use Cases Diagrams](#use-cases-diagrams)
+    - [Sequence Diagrams](#sequence-diagrams)
+    - [DER Diagram](#der-diagram)
+5. [References](#references)
 
 ## Requirements
 
-- Docker
-- Docker Compose
+- Docker and Docker Compose
 - Git
-- Postman (recommended for API testing)
+- Postman
 
 ## Getting Started
 
 ### Installation
 
-1. **Clone the Repository**
+**1. Clone the Repository**
 
-   Begin by cloning this repository to your local machine using Git:
-
+Clone this repository to your local machine using Git and navigate into the project directory:
    ```bash
    git clone https://github.com/pmirand6/prex-challenge.git
    cd prex-challenge
    ```
 
-2. **Build and Start Docker Containers**
+**2. Build and Start Docker Containers**
 
-   Execute the following command to build and initiate the Docker containers:
-
+Use Docker Compose to build and start the necessary containers:
    ```bash
    docker-compose up -d --build
    ```
 
-3. **Install Project Dependencies**
+**3. Install Project Dependencies**
 
-   With the containers up and running, install the project dependencies using Composer:
-
+Install dependencies within the Docker container:
    ```bash
    docker exec -it prex-challenge-app composer install
    ```
 
-4. **Database Migrations and Seeding**
+**4. Database Migrations and Seeding**
 
-   Execute these commands to set up the database tables and populate them with sample data:
-
+Set up and populate the database:
    ```bash
    docker exec -it prex-challenge-app php artisan migrate
    docker exec -it prex-challenge-app php artisan db:seed
    ```
 
-5. **Generate OAuth 2.0 Keys**
+**5. Generate OAuth 2.0 Keys**
 
-   Generate the necessary keys for OAuth 2.0 authentication with this command:
-
+Generate keys for OAuth 2.0 authentication:
    ```bash
    docker exec -it prex-challenge-app php artisan passport:install
    ```
 
 ### Usage
 
-Once the Docker container is operational, the API can be accessed at `http://localhost:8498` or through any other port you've configured to map to the container's port 80.
+**Access the API** at `http://localhost:8498` or through the configured port mapped to container's port 80.
 
-#### Seeded User Credentials:
+**Seeded User Credentials:**
 
-```plaintext
-Email: test@prex-challenge.com
-Password: password
-```
+- Email: test@prex-challenge.com
+- Password: password
 
-#### API Endpoints
+**API Endpoints:**
+- `POST /api/login`
+- `GET /api/gifs/search`
+- `GET /api/gifs/:id`
+- `POST /api/user-gifs`
 
-The API offers the following endpoints:
-```plaintext
-POST /api/login
-GET /api/gifs/search
-GET /api/gifs/:id
-POST /api/user-gifs
-```
+**Postman Collection:** Explore the API with the provided [Postman Collection](https://documenter.getpostman.com/view/3105220/2sA2rDy1ry).
 
-#### Postman Collection
-In the published [Postman Collection](https://documenter.getpostman.com/view/3105220/2sA2rDy1ry) you will find a set of requests that demonstrate how to interact with these endpoints.
+### Testing
 
+Ensure the application is correctly set up and execute tests:
 
-#### Testing
+1. **Prepare the Test Database:**
+   ```bash
+   docker exec -it prex-challenge-app touch database/database.sqlite
+   ```
+2. **Optimize the Application:**
+   ```bash
+   docker exec -it prex-challenge-app php artisan optimize
+   ```
+3. **Execute the Tests:**
+   ```bash
+   docker exec -it prex-challenge-app php artisan test
+   ```
 
-##### Application Tests:
-
-To ensure proper application testing, follow these steps:
-
-- **Prepare the Test Database:**
-
-  ```bash
-  docker exec -it prex-challenge-app touch database/database.sqlite
-  ```
-
-- **Optimize the Application:**
-
-  This step ensures the database location is correctly recognized during testing:
-
-  ```bash
-  docker exec -it prex-challenge-app php artisan optimize
-  ```
-
-- **Execute the Tests:**
-
-  Run the tests with the following command:
-
-  ```bash
-  docker exec -it prex-challenge-app php artisan test
-  ```
-
-# Documentation
+## Documentation
 
 ### Use Cases Diagrams
 
-#### User Authentication
-
-![User Login](./images/use-cases/user-login.png)
-
-#### User Gif Interaction
-![User Gif Interaction](./images/use-cases/user-gif-interaction.png)
+- **User Authentication**
+  ![User Login](./images/use-cases/user-login.png)
+- **User Gif Interaction**
+  ![User Gif Interaction](./images/use-cases/user-gif-interaction.png)
 
 ### Sequence Diagrams
 
-#### User Authentication
-
-![User Login](./images/sequence-diagrams/user-login.png)
-
-#### User Search Gif by Keyword
-
-![User Search Gif by Keyword](./images/sequence-diagrams/search-gif-by-keyword.png)
-
-#### User Search Gif by ID
-
-![User Search Gif by ID](./images/sequence-diagrams/search-gif-by-id.png)
-
-#### User Save Favorite Gif
-
-![User Save Favorite Gif](./images/sequence-diagrams/store-favorite-gif.png)
+- **User Authentication**
+  ![User Login](./images/sequence-diagrams/user-login.png)
+- **User Search Gif by Keyword**
+  ![User Search Gif by Keyword](./images/sequence-diagrams/search-gif-by-keyword.png)
+- **User Search Gif by ID**
+  ![User Search Gif by ID](./images/sequence-diagrams/search-gif-by-id.png)
+- **User Save Favorite Gif**
+  ![User Save Favorite Gif](./images/sequence-diagrams/store-favorite-gif.png)
 
 ### DER Diagram
 
-![Database Entity Relationship](./images/der/prex-challenge-der.png)
+- **Database Entity Relationship**
+  ![Database Entity Relationship](./images/der/prex-challenge-der.png)
+
+## References
+
+- Laravel: [Visit Laravel](https://laravel.com/)
+- GIPHY API: [Visit GIPHY API](https://developers.giphy.com/)
+- Docker Image: [pmirand6/php82-apache-composer](https://hub.docker.com/r/pmirand6/php82-apache-composer)
