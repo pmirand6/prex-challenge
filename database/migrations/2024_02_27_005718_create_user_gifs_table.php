@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('user_gifs', function (Blueprint $table) {
             $table->id();
-            $table->string('gif_id')->unique();
+            $table->string('gif_id');
             $table->string('alias')->unique();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
