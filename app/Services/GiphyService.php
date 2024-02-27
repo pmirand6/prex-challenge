@@ -33,12 +33,13 @@ class GiphyService
             ];
             
             $response = Http::get(config('giphy.api.url') . self::SEARCH_GIPHY_PREFIX, $requestData);
+            $response->throwUnlessStatus(200);
             
             return SearchGifResponseDto::from($response->json());
             
         } catch (\Throwable $e) {
             Log::error('Error getting gif by keyword', ['error' => $e->getMessage()]);
-            throw new GiphyServiceException($e->getMessage());
+            throw new GiphyServiceException('Error getting gif by keyword', $e->getCode() ?? 500);
         }
         
     }
@@ -53,11 +54,12 @@ class GiphyService
             $response = Http::get($url, [
                 'api_key' => config('giphy.api.key'),
             ]);
+            $response->throwUnlessStatus(200);
             
             return SearchByIdGifResponseDto::from($response->json());
         } catch (\Throwable $e) {
             Log::error('Error getting gif by id', ['error' => $e->getMessage()]);
-            throw new GiphyServiceException($e->getMessage());
+            throw new GiphyServiceException('Error getting gif by id', $e->getCode() ?? 500);
         }
     }
 }

@@ -20,5 +20,6 @@ Route::post('/login', 'App\Http\Controllers\Api\Auth\AuthController@login');
 Route::group(['middleware' => ['auth:api']], function () {
     Route::prefix('gifs')->group(function () {
         Route::get('/search', [GiphyController::class, 'search']);
+        Route::get('/{id}', [GiphyController::class, 'findById']);
     });
 });
