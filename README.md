@@ -110,6 +110,13 @@ To ensure proper application testing, follow these steps:
   docker exec -it prex-challenge-app php artisan test
   ```
 
-## Documentation
+# Documentation
 
-Further API documentation and usage instructions will be added here.
+### Use Cases Diagrams
+
+#### User Authentication
+
+![User Login](./images/use-cases/user-login.png)
+
+#### User Gif Interaction
+![User Gif Interaction](./images/use-cases/user-gif-interaction.png)
