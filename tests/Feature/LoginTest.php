@@ -11,6 +11,23 @@ use Tests\TestCase;
 
 class LoginTest extends TestCase
 {
+    use RefreshDatabase;
+    
+    public function setUp(): void
+    {
+        parent::setUp();
+        
+        $this->artisan('passport:install');
+        $this->artisan('passport:keys');
+        
+        User::factory()->create([
+            'email' => 'test@prex-challenge.com',
+            'password' => bcrypt('password'),
+        ]);
+        
+        
+    }
+    
     public function test_login_success()
     {
         $response = $this->post('/api/login', [
@@ -30,7 +47,7 @@ class LoginTest extends TestCase
     {
         $response = $this->post('/api/login', [
             'email' => 'test@prex-challenge.com',
-            'password' => 'wrong-password',
+            'password' => 'wrong - password',
         ]);
         
         $response->assertStatus(401);
@@ -73,7 +90,6 @@ class LoginTest extends TestCase
         $differenceInSeconds = $expirationTimestamp - $nowTimestamp;
         $this->assertLessThanOrEqual(30 * 60, $differenceInSeconds);
     }
-    
     
     
 }

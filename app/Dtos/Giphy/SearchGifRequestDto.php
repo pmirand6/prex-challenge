@@ -11,7 +11,7 @@ use Spatie\LaravelData\Data;
 class SearchGifRequestDto extends Data
 {
     public function __construct(
-        public string $keyword,
+        public string $query,
         public int $limit = 1,
         public int $offset = 0
     ) {

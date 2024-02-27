@@ -27,7 +27,7 @@ class GiphyService
         try {
             $requestData = [
                 'api_key' => config('giphy.api.key'),
-                'q' => $searchGifRequest->keyword,
+                'q' => $searchGifRequest->query,
                 'limit' => $searchGifRequest->limit,
                 'offset' => $searchGifRequest->offset,
             ];
