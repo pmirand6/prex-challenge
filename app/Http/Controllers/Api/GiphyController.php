@@ -15,6 +15,7 @@ class GiphyController extends Controller
 {
     public function __construct(private readonly GiphyService $giphyService)
     {
+        $this->middleware('audit-trail');
     }
     
     /**

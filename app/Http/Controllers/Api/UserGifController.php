@@ -13,6 +13,7 @@ class UserGifController extends Controller
 {
     public function __construct(private readonly UserGifService $userGifService)
     {
+        $this->middleware('audit-trail');
     }
     
     
