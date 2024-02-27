@@ -70,7 +70,17 @@ Password: password
 
 #### API Endpoints
 
-Documentation for API endpoints will be provided here.
+The API offers the following endpoints:
+```plaintext
+POST /api/login
+GET /api/gifs/search
+GET /api/gifs/:id
+POST /api/user-gifs
+```
+
+#### Postman Collection
+In the published [Postman Collection](https://documenter.getpostman.com/view/3105220/2sA2rDy1ry) you will find a set of requests that demonstrate how to interact with these endpoints.
+
 
 #### Testing
 
