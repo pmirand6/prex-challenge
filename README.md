@@ -138,3 +138,7 @@ To ensure proper application testing, follow these steps:
 #### User Save Favorite Gif
 
 ![User Save Favorite Gif](./images/sequence-diagrams/store-favorite-gif.png)
+
+### DER Diagram
+
+![Database Entity Relationship](./images/der/prex-challenge-der.png)
